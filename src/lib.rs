@@ -26,6 +26,13 @@ impl Gateway {
             waker.wake();
         }
     }
+
+    pub fn as_ref(&self) -> Option<&Vec<u8>> {
+        match self.is_closed {
+            true => Some(&self.data),
+            false => None,
+        }
+    }
 }
 
 impl AsyncRead for Gateway {
